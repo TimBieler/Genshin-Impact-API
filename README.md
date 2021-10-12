@@ -6,10 +6,10 @@ Hello this is our README file for our project, it's about Genshin Impact.
 
 It is a helpful gadget when you play the game. It is a lot easier instead
 
-of lokking on the Internet. It helps you find good artifacts for the right
+of looking on the internet. It helps you find good artifacts for the right
 
-Character and the best Weapon. It shows you in which dungeon which artifact is.
+character and the best Weapon. It shows you in which dungeon which artifact is.
 
-It also shows you interesting facts about each character, for example birthday or
+It also shows you interesting facts about each character.
 
-which nation there are coming from.
+For example weapon type or which nation there are coming from.
