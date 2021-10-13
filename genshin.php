@@ -1,4 +1,3 @@
-
 <?php
 
 //step1 cURL - Session initialisieren
@@ -33,37 +32,6 @@ print("\n");
 $i = readline("Eingabe: ");
 switch ($i) {
     case 1:
-        //step1 cURL - Session initialisieren
-        $curl = curl_init();
-
-        // Abhängig von der API, hier json
-        $headers = array(
-            'Accept: application/json',
-            'Content-Type: application/json',
-        );
-        $url = "https://api.genshin.dev/characters/Bennett?json";
-
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-        //step3 cURL Session ausführen
-        $result = curl_exec($curl);
-
-        //step4 cURL Session schliessen
-        curl_close($curl);
-
-        //step5 Ausgabe Ergebniss
-        $array = json_decode($result);
-        // print_r($array);
-        echo $array->name . PHP_EOL;
-        echo $array->weapon . PHP_EOL;
-        for ($i = 0; $i < count($array->skillTalents); $i++) {
-            echo $array->skillTalents[$i]->name . PHP_EOL;
-        }
-
         $curl = curl_init();
 
         $headers = array(
@@ -115,12 +83,58 @@ switch ($i) {
 
         $arInfo = json_decode($result);
 
-        echo $arInfo->name . PHP_EOL;
-        echo $arInfo->max_rarity . PHP_EOL;
-        $twopiece = "2-piece_bonus";
-        $fourpiece = "4-piece_bonus";
-        echo $arInfo->$twopiece . PHP_EOL;
-        echo $arInfo->$fourpiece . PHP_EOL;
+        $arError = "Artefakt aus der API nicht gefunden, aber schriftlich verfügbar\n";
+        $rare4 = "Maximale Seltenheit : 4\n";
+        $two = "2-piece_bonus";
+        $four = "4-piece_bonus";
+
+        if ($input == 10) {
+            echo "\n\n";
+            echo $arError;
+            echo "\nGlacier and Snowfield\n";
+            echo "Ein Artefakt, dass erst in der Beta existiert\n";
+            echo "Maximale Seltenheit : 5\n";
+            echo "Bonus bei 2 Stück : unbekannt\n";
+            echo "Bonus bei 4 Stück : unbekannt";
+        } elseif ($input == 20) {
+            echo "\n\n";
+            echo $arError;
+            echo "\nPrayers For Destiny\n";
+            echo $rare4;
+            echo "Bonus bei 1 Stück : Affected by Hydro for 40% less time\n";
+        } elseif ($input == 21) {
+            echo "\n\n";
+            echo $arError;
+            echo "\nPrayers For Illumination\n";
+            echo $rare4;
+            echo "Bonus bei 1 Stück : Affected by Pyro for 40% less time\n";
+        } elseif ($input == 22) {
+            echo "\n\n";
+            echo $arError;
+            echo "\nPrayers For Wisdom\n";
+            echo $rare4;
+            echo "Bonus bei 1 Stück : Affected by Electro for 40% less time.\n";
+        } elseif ($input == 23) {
+            echo "\n\n";
+            echo $arError;
+            echo "\nPrayers For Springtime\n";
+            echo $rare4;
+            echo "Bonus bei 1 Stück : Affected by Cryo for 40% less time\n";
+        } elseif ($input == 24) {
+            echo "\n\n";
+            echo $arError;
+            echo "\nPrayers For The Firmament\n";
+            echo "Ein Artefakt, dass in der Beta existierte, heute aber nicht mehr\n";
+            echo $rare4;
+            echo "Bonus bei 1 Stück : Affected by Anemo for 40% less time\n";
+        } else {
+            echo $arInfo->name. PHP_EOL;
+            echo "Maximale Seltenheit : ", $arInfo->max_rarity;
+            echo "\n";
+            echo "Bonus bei 2 Stück : ", $arInfo->$two;
+            echo "\n";
+            echo "Bonus bei 4 Stück : ", $arInfo->$four;
+        }
         break;
     case 2:
         $curl = curl_init();
