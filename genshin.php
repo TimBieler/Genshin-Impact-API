@@ -1,6 +1,6 @@
 
 <?php
-//Chinesische Republikaner
+
 function loadData($url)
 {
     $curl = curl_init();
@@ -26,15 +26,20 @@ function loadData($url)
 $result = loadData("https://api.genshin.dev?json");
 
 $array = json_decode($result);
-// print_r($array);
+
 echo "1 " . $array->types[0] . PHP_EOL;
 echo "2 " . $array->types[1] . PHP_EOL;
 echo "5 " . $array->types[4] . PHP_EOL;
+echo "6 " . $array->types[5] . PHP_EOL;
+echo "8 " . $array->types[7] . PHP_EOL;
 echo "9 " . $array->types[8] . PHP_EOL;
 print("\n");
 $i = readline("Eingabe: ");
 switch ($i) {
     case 1:
+
+        //Artifacts
+
         $result = loadData("https://api.genshin.dev/artifacts?json");
 
         $artifacts = json_decode($result);
@@ -89,6 +94,9 @@ switch ($i) {
         }
         break;
     case 2:
+
+        //Characters
+
         $result = loadData("https://api.genshin.dev/characters?json");
 
         $char = json_decode($result, true);
@@ -106,18 +114,29 @@ switch ($i) {
             print("Das ist kein Mögliche Auswahl\n");
             exit;
         }
+        print("\n");
         $info = json_decode($result);
-        echo "Name: " . $info->name . PHP_EOL;
-        echo "Nation: " . $info->nation . PHP_EOL;
-        echo "Waffe: " . $info->reactions . PHP_EOL;
-        echo "Göttliches Auge: Typ " . $info->vision . PHP_EOL;
+        if ($a > 34 || $a < 32) {
+            echo "Name: " . $info->name . PHP_EOL;
+            echo "Nation: " . $info->nation . PHP_EOL;
+            echo "Waffe: " . $info->weapon . PHP_EOL;
+            echo "Seltenheit: " . $info->rarity . " Sterne \n";
+            echo "Göttliches Auge: Typ " . $info->vision . PHP_EOL;
+        } else {
+            echo "Name: " . $info->name . PHP_EOL;
+            echo "Waffe: " . $info->weapon . PHP_EOL;
+            echo "Seltenheit: " . $info->rarity . " Sterne \n";
+            echo "Göttliches Auge: Typ " . $info->vision . PHP_EOL;
+        }
         break;
     case 3:
         break;
     case 4:
         break;
     case 5:
-        //ELEMENTS---------------------------------
+
+        //Elements
+
         $result = loadData("https://api.genshin.dev/elements?json");
 
         $elements = json_decode($result, true);
@@ -132,30 +151,30 @@ switch ($i) {
 
         $effect = json_decode($result);
 
-        echo "\nName: ", $effect->name . PHP_EOL;
+        echo "\nName: ", $effect->name . "\n\n";
         if ($input == 1 || $input == 3 || $input == 5) {
-            for ($w = 0; $w < 3; $w++){
+            for ($w = 0; $w < 3; $w++) {
                 echo "\nEffekt: ", $effect->reactions[$w]->name . PHP_EOL;
                 echo "Reaktion mit: ", $effect->reactions[$w]->elements[0] . PHP_EOL;
                 echo $effect->reactions[$w]->description . PHP_EOL;
                 echo "\n";
             }
         } elseif ($input == 6) {
-            for ($w = 0; $w < 4; $w++){
+            for ($w = 0; $w < 4; $w++) {
                 echo "Effekt: ", $effect->reactions[$w]->name . PHP_EOL;
                 echo "Reaktion mit: ", $effect->reactions[$w]->elements[0] . PHP_EOL;
                 echo $effect->reactions[$w]->description . PHP_EOL;
                 echo "\n";
             }
         } elseif ($input == 0 || $input == 4) {
-            for ($w = 0; $w < 4; $w++){
+            for ($w = 0; $w < 4; $w++) {
                 echo "Effekt: ", $effect->reactions[0]->name . PHP_EOL;
                 echo "Reaktion mit: ", $effect->reactions[0]->elements[$w] . PHP_EOL;
                 echo $effect->reactions[0]->description . PHP_EOL;
                 echo "\n";
             }
         } elseif ($input == 2) {
-            for ($w = 0; $w < 1; $w++){
+            for ($w = 0; $w < 1; $w++) {
                 echo "Effekt: ", $effect->reactions[0]->name . PHP_EOL;
                 echo "Reaktion mit: ", $effect->reactions[0]->elements[$w] . PHP_EOL;
                 echo $effect->reactions[0]->description . PHP_EOL;
@@ -166,16 +185,83 @@ switch ($i) {
         }
         break;
     case 6:
+        
+        //Enemies
+
+        $result = loadData("https://api.genshin.dev/characters?json");
+
+        $enm = json_decode($result, true);
+        for ($x = 0; $x != 21 $x++) {
+            echo ($x . " " . $enm[$x]);
+            print("\n");
+        }
         break;
     case 7:
         break;
     case 8:
+        //Nations---------------------------
+        $result = loadData("https://api.genshin.dev/nations?json");
+
+        $nations = json_decode($result, true);
+        //Schleife print = [(0)Inazuma (1)Liyue (2)Mondstadt]
+        for ($x = 0; $x != 3; $x++) {
+            echo ($x . " " . $nations[$x]);
+            print("\n");
+        }
+        echo "3 Sumeru\n";
+        echo "4 Fontaine\n";
+        echo "5 Natlan\n";
+        echo "6 Snezhnaya\n";
+        echo "7 Khaenria\n";
+
+        $input = readline("Eingabe: ");
+        echo "\n";
+        //Input 3 - 7 = Selbstgemacht, Rest ist API
+        if ($input == 3) {
+            echo "Name: Sumeru\n";
+            echo "Element: Dendro\n";
+            echo "Archon (Gott): Lesser Lord Kusanali\n";
+            echo "Regierung: Unknown\n";
+        } elseif ($input == 4) {
+            echo "Name: Fontaine\n";
+            echo "Element: Hydro\n";
+            echo "Archon (Gott): name unknown\n";
+            echo "Regierung: Unknown\n";
+        } elseif ($input == 5) {
+            echo "Name: Natlan\n";
+            echo "Element: Pyro\n";
+            echo "Archon (Gott): Murata\n";
+            echo "Regierung: Unknownn";
+        } elseif ($input == 6) {
+            echo "Name: Snezhnaya\n";
+            echo "Element: Cryo\n";
+            echo "Archon (Gott): Tsaritsa\n";
+            echo "Regierung: The Fatui\n";
+        } elseif ($input == 7) {
+            echo "Name: Khaenriah\n";
+            echo "Element: ???\n";
+            echo "Archon (Gott): Unknown\n";
+            echo "Regierung: Eclipse Dynasty (former)\n";
+        } elseif ($input == 0 || $input == 1 || $input == 2) {
+            $result = loadData("https://api.genshin.dev/nations/$nations[$input]?json");
+            $cityInfo = json_decode($result);
+            echo "Name: ", $cityInfo->name . "\n";
+            echo "Element: ", $cityInfo->element . "\n";
+            echo "Archon (Gott): ", $cityInfo->archon . "\n";
+            echo "Regierung: ", $cityInfo->controllingEntity . "\n";
+        }
         break;
     case 9:
+
+        //Weapons
+
         $result = loadData("https://api.genshin.dev/weapons?json");
         $weapon = json_decode($result, true);
-        for ($c = 0; $c != 124; $c++) {
-            echo ($c . " " . $weapon[$c]);
+        for ($c = 0; $c != 31; $c++) {
+            echo str_pad(($c . " " . $weapon[$c]), 40);
+            echo str_pad(($c + 31 . " " . $weapon[$c + 31]), 40);
+            echo str_pad(($c + 62 . " " . $weapon[$c + 62]), 40);
+            echo ($c + 93 . " " . $weapon[$c + 93]);
             print("\n");
         }
         print("\n\n");
