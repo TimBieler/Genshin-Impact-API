@@ -185,15 +185,325 @@ switch ($i) {
         break;
     case 6:
 
-        //Enemies
+    //Enemies
 
-        $result = loadData("https://api.genshin.dev/characters?json");
-
-        $enm = json_decode($result, true);
-        for ($x = 0; $x != 21; $x++) {
-            echo ($x . " " . $enm[$x]);
+    $result = loadData("https://api.genshin.dev/enemies?json");
+    $enm = json_decode($result, true);
+    for ($x = 0; $x != 20; $x++) {
+        echo ($x . " " . $enm[$x]);
             print("\n");
-        }
+    }
+
+    $input = readline("Eingabe: ");
+
+    if ($input > -1 && $input < 20) {
+        $result = loadData("https://api.genshin.dev/enemies/$enm[$input]?json");
+        $emm = json_decode($result);
+    } else {
+        print("Das ist kein Mögliche Auswahl\n");
+        exit;
+    }
+    print("\n");
+
+    //Abyss Mage
+    if ($input == 0) {
+        echo $emm->name . "\n";
+        echo "Element: ";
+        echo  $emm->elements[0] . ", ";
+        echo  $emm->elements[1] . ", ";
+        echo  $emm->elements[2] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo $emm->description . PHP_EOL;
+        print("\n");
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Defense Mechanism*/
+    elseif ($input == 1) {
+        echo $emm->name . ": ", "\n";
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+    } /*Eye Of The Storm*/
+    elseif ($input == 2) {
+        echo $emm->name . ": ", "\n";
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+    } /*Fatui Agent*/
+    elseif ($input == 3) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ", $emm->elements[0] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+        echo $emm->drops[3]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[4]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[5]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Fatui Cicin Mage*/
+    elseif ($input == 4) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ";
+        echo  $emm->element[0] . ", ";
+        echo  $emm->element[1] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Fatui skirmisher*/
+    elseif ($input == 5) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ";
+        echo  $emm->elements[0] . ", ";
+        echo  $emm->elements[1] . ", ";
+        echo  $emm->elements[2] . ", ";
+        echo  $emm->elements[3] . ", ";
+        echo  $emm->elements[4] . ", ";
+        echo  $emm->elements[5] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Geovishap*/
+    elseif ($input == 6) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ", $emm->elements[0] . "\n";
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Geovishap Hatchling*/
+    elseif ($input == 7) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ", $emm->elements[0] . "\n";
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Hilichurl*/
+    elseif ($input == 8) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ";
+        echo  $emm->elements[0] . ", ";
+        echo  $emm->elements[1] . ", ";
+        echo  $emm->elements[2] . ", ";
+        echo  $emm->elements[3] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Hilichurl Shooter*/
+    elseif ($input == 9) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ";
+        echo  $emm->elements[0] . ", ";
+        echo  $emm->elements[1] . ", ";
+        echo  $emm->elements[2] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Lawachurl*/
+    elseif ($input == 10) {
+        echo $emm->id . ": ";
+        echo $emm->elements[0] . ", ";
+        echo $emm->elements[1] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo $emm->description . PHP_EOL;
+        print("\n");
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n");
+        print("\n");
+    } /*Mitachurl, Ruin Grader, Ruin Guard, Ruin Hunter*/
+    elseif ($input > 10 && $input < 15) {
+        echo $emm->name . ": ";
+        echo $emm->elements[0] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo $emm->description . PHP_EOL;
+        print("\n");
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n");
+        print("\n");
+    } /*Samachurl*/
+    elseif ($input == 15) {
+        echo $emm->name . ": ";
+        echo $emm->elements[0] . ", ";
+        echo $emm->elements[1] . ", ";
+        echo $emm->elements[2] . ", ";
+        echo $emm->elements[3] . ", ";
+        echo $emm->elements[4] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n");
+        print("\n");
+    } /*Slime*/
+    elseif ($input == 16) {
+        echo $emm->name . ": ";
+        echo $emm->elements[0] . ", ";
+        echo $emm->elements[1] . ", ";
+        echo $emm->elements[2] . ", ";
+        echo $emm->elements[3] . ", ";
+        echo $emm->elements[4] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n");
+        print("\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n");
+        print("\n");
+    } /*The Greater Snowboar King*/
+    elseif ($input == 17) {
+        echo $emm->name . ": ";
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n");
+        print("\n");
+    } /*Treasure Hoarder*/
+    elseif ($input == 18) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ";
+        echo  $emm->elements[0] . ", ";
+        echo  $emm->elements[1] . ", ";
+        echo  $emm->elements[2] . ", ";
+        echo  $emm->elements[3] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    } /*Whoppperflower*/
+    elseif ($input == 19) {
+        echo $emm->name . ": ", "\n";
+        echo "Element: ";
+        echo  $emm->elements[0] . ", ";
+        echo  $emm->elements[1] . PHP_EOL;
+        print("\n");
+        echo  "Gegner Typ: ", $emm->type . PHP_EOL;
+        echo  "Familie: ", $emm->family . PHP_EOL;
+        print("\n");
+        echo "Beschreibung: ", $emm->description . PHP_EOL;
+        echo "\n";
+        echo $emm->drops[0]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[0]->rarity . " Sterne\n\n");
+        echo $emm->drops[1]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[1]->rarity . " Sterne\n\n");
+        echo $emm->drops[2]->name . PHP_EOL;
+        echo ("Seltenheit: " . $emm->drops[2]->rarity . " Sterne\n\n");
+    }
+
         break;
     case 7:
         break;
