@@ -1,4 +1,3 @@
-
 <?php
 
 function loadData($url)
@@ -185,13 +184,13 @@ switch ($i) {
         }
         break;
     case 6:
-        
+
         //Enemies
 
         $result = loadData("https://api.genshin.dev/characters?json");
 
         $enm = json_decode($result, true);
-        for ($x = 0; $x != 21 $x++) {
+        for ($x = 0; $x != 21; $x++) {
             echo ($x . " " . $enm[$x]);
             print("\n");
         }
@@ -215,33 +214,19 @@ switch ($i) {
         echo "7 Khaenria\n";
 
         $input = readline("Eingabe: ");
+
         echo "\n";
         //Input 3 - 7 = Selbstgemacht, Rest ist API
-        if ($input == 3) {
-            echo "Name: Sumeru\n";
-            echo "Element: Dendro\n";
-            echo "Archon (Gott): Lesser Lord Kusanali\n";
-            echo "Regierung: Unknown\n";
-        } elseif ($input == 4) {
-            echo "Name: Fontaine\n";
-            echo "Element: Hydro\n";
-            echo "Archon (Gott): name unknown\n";
-            echo "Regierung: Unknown\n";
-        } elseif ($input == 5) {
-            echo "Name: Natlan\n";
-            echo "Element: Pyro\n";
-            echo "Archon (Gott): Murata\n";
-            echo "Regierung: Unknownn";
-        } elseif ($input == 6) {
-            echo "Name: Snezhnaya\n";
-            echo "Element: Cryo\n";
-            echo "Archon (Gott): Tsaritsa\n";
-            echo "Regierung: The Fatui\n";
-        } elseif ($input == 7) {
-            echo "Name: Khaenriah\n";
-            echo "Element: ???\n";
-            echo "Archon (Gott): Unknown\n";
-            echo "Regierung: Eclipse Dynasty (former)\n";
+        $citynam = array("Sumeru", "Fontaine", "Natlan", "Snezhaya", "Khaenriah");
+        $cityele = array("Dendro", "Hydro", "Pyro", "Cryo", "???");
+        $citarch = array("Lesser Lord Kusanali", "name unknown", "Murata", "Tsaritsa", "Unkownn");
+        $citreg = array("Unknown", "Court of Fontaine", "Unknown", "The Fatui", "Eclipse Dynasty");
+        $input1 = $input-3;
+        if ($input > 2 && $input < 8) {
+            echo "Name: $citynam[$input1]\n";
+            echo "Element: $cityele[$input1]\n";
+            echo "Archon (Gott): $citarch[$input1]\n";
+            echo "Regierung: $citreg[$input1]\n";
         } elseif ($input == 0 || $input == 1 || $input == 2) {
             $result = loadData("https://api.genshin.dev/nations/$nations[$input]?json");
             $cityInfo = json_decode($result);
@@ -249,6 +234,8 @@ switch ($i) {
             echo "Element: ", $cityInfo->element . "\n";
             echo "Archon (Gott): ", $cityInfo->archon . "\n";
             echo "Regierung: ", $cityInfo->controllingEntity . "\n";
+        } else {
+            print("Das ist keine Auswahl!");
         }
         break;
     case 9:
